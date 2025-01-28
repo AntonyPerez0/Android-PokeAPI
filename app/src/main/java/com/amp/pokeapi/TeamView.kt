@@ -15,11 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import androidx.navigation.NavController
+import com.amp.pokeapi.extensions.capitalizeFirstLetter
 import com.amp.pokeapi.models.Pokemon
 import com.amp.pokeapi.viewmodels.TeamViewModel
-import kotlinx.coroutines.launch
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -113,3 +114,5 @@ fun TeamMemberItem(pokemon: Pokemon, teamViewModel: TeamViewModel) {
         }
     }
 }
+
+// Removed the duplicate capitalizeFirstLetter() function

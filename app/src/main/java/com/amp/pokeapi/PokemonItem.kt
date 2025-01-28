@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.amp.pokeapi.extensions.capitalizeFirstLetter
 import com.amp.pokeapi.models.Pokemon
 
 @Composable
@@ -57,7 +58,10 @@ fun PokemonItem(
 
             // Abilities
             val abilityList = pokemon.abilities.joinToString { it.ability.name }
-            Text(text = "Abilities: $abilityList")
+            Text(
+                text = "Abilities:\n$abilityList",
+                fontSize = 16.sp
+            )
 
             // Types
             val typeList = pokemon.types.joinToString { it.type.name }
@@ -76,7 +80,4 @@ fun PokemonItem(
     }
 }
 
-// Helper extension to uppercase the first letter
-fun String.capitalizeFirstLetter(): String {
-    return replaceFirstChar { if (it.isLowerCase()) it.uppercase() else it.toString() }
-}
+// Removed the duplicate capitalizeFirstLetter() function

@@ -2,6 +2,7 @@
 package com.amp.pokeapi.viewmodels
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.amp.pokeapi.models.Pokemon
 
@@ -10,6 +11,10 @@ class TeamViewModel : ViewModel() {
     // Holds the list of Pokémon in the team
     private val _team = mutableStateListOf<Pokemon>()
     val team: List<Pokemon> get() = _team
+
+    // Loading state to indicate data fetching
+    var isLoading = mutableStateOf(false)
+        private set
 
     // Maximum team size
     private val maxTeamSize = 5
@@ -29,5 +34,10 @@ class TeamViewModel : ViewModel() {
     // Removes a Pokémon from the team
     fun removeFromTeam(pokemon: Pokemon) {
         _team.remove(pokemon)
+    }
+
+    // Sets the loading state
+    fun setLoading(value: Boolean) {
+        isLoading.value = value
     }
 }

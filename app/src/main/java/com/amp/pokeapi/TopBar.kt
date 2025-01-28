@@ -74,8 +74,7 @@ fun TopBar(navController: NavController, teamViewModel: TeamViewModel) {
             }
         }
     ) { innerPadding ->
-        // The calling composable (e.g., ScrollContent) should handle displaying content
-        // You can pass the searchQuery to the content composable if needed
+        // Show the grid content, passing in both the padding from Scaffold and the search query
         ScrollContent(innerPadding, searchQuery, teamViewModel)
     }
 }

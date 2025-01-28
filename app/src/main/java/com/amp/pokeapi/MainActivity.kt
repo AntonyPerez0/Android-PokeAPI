@@ -8,6 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -37,6 +41,8 @@ class MainActivity : ComponentActivity() {
                             Column {
                                 TopBar(navController, teamViewModel) // Pass navController to TopBar
                                 // Rest of your content (Pokémon grid)
+                                // Assuming ScrollContent is already integrated within TopBar
+                                // If not, ensure to place ScrollContent here
                             }
                         }
                         composable("teamView") {
