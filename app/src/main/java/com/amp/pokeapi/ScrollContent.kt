@@ -21,50 +21,48 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ScrollContent(
-    innerPadding: PaddingValues,
-    searchQuery: String,
-    teamViewModel: TeamViewModel
+    innerPadding: PaddingValues, searchQuery: String, teamViewModel: TeamViewModel
 ) {
-    // Holds the final list of detailed Pokemon objects
+
     var pokemonList by remember { mutableStateOf<List<Pokemon>>(emptyList()) }
     val coroutineScope = rememberCoroutineScope()
 
-    // Snackbar to show feedback messages
+
     val snackbarHostState = remember { SnackbarHostState() }
 
-    // Observe the loading state from the ViewModel
+
     val isLoading by teamViewModel.isLoading
 
-    // This effect triggers a network call to fetch the first 151 Pokémon + details
+
     LaunchedEffect(Unit) {
         coroutineScope.launch {
             try {
-                // Set loading to true before starting the fetch
+
                 teamViewModel.setLoading(true)
 
-                // 1) Get the initial list (returns name + url)
+
                 val response = RetrofitInstance.api.getPokemon(limit = 151)
 
-                // 2) For each, get the detailed object
+
                 val detailedList = response.results.map { basicPkm ->
                     RetrofitInstance.api.getPokemonDetails(basicPkm.url)
                 }
 
                 pokemonList = detailedList
             } catch (e: Exception) {
-                // Handle error state and show Snackbar
+
                 e.printStackTrace()
                 coroutineScope.launch {
                     snackbarHostState.showSnackbar("Failed to load Pokémon data.")
                 }
             } finally {
-                // Set loading to false after fetch completes
+
                 teamViewModel.setLoading(false)
             }
         }
     }
 
-    // Filter the list by user-entered search (case-insensitive)
+
     val filteredList = remember(searchQuery, pokemonList) {
         pokemonList.filter {
             it.name.contains(searchQuery, ignoreCase = true)
@@ -72,7 +70,7 @@ fun ScrollContent(
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        // Display the filtered results as a two-column lazy grid
+
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             contentPadding = innerPadding,
@@ -81,8 +79,7 @@ fun ScrollContent(
             items(filteredList) { pkm ->
                 val isAdded = teamViewModel.team.any { it.name == pkm.name }
                 PokemonItem(
-                    pokemon = pkm,
-                    onAddToTeam = { pokemon ->
+                    pokemon = pkm, onAddToTeam = { pokemon ->
                         val success = teamViewModel.addToTeam(pokemon)
                         coroutineScope.launch {
                             if (success) {
@@ -97,23 +94,21 @@ fun ScrollContent(
                                 snackbarHostState.showSnackbar(message)
                             }
                         }
-                    },
-                    isAdded = isAdded
+                    }, isAdded = isAdded
                 )
             }
         }
 
-        // Show the loading spinner when data is being fetched
+
         if (isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center)
             )
         }
 
-        // Display Snackbar
+
         SnackbarHost(
-            hostState = snackbarHostState,
-            modifier = Modifier.align(Alignment.BottomCenter)
+            hostState = snackbarHostState, modifier = Modifier.align(Alignment.BottomCenter)
         )
     }
 }
