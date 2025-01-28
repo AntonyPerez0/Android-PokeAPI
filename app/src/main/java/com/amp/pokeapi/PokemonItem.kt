@@ -1,4 +1,3 @@
-// app/src/main/java/com/amp/pokeapi/PokemonItem.kt
 package com.amp.pokeapi
 
 import androidx.compose.foundation.Image
@@ -17,8 +16,8 @@ import com.amp.pokeapi.models.Pokemon
 @Composable
 fun PokemonItem(
     pokemon: Pokemon,
-    onAddToTeam: (Pokemon) -> Unit, // Callback when button is clicked
-    isAdded: Boolean,               // Indicates if Pokémon is already in the team
+    onAddToTeam: (Pokemon) -> Unit,
+    isAdded: Boolean,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -59,8 +58,7 @@ fun PokemonItem(
             // Abilities
             val abilityList = pokemon.abilities.joinToString { it.ability.name }
             Text(
-                text = "Abilities:\n$abilityList",
-                fontSize = 16.sp
+                text = "Abilities:\n$abilityList", fontSize = 16.sp
             )
 
             // Types
@@ -71,8 +69,7 @@ fun PokemonItem(
 
             // Add to Team Button
             Button(
-                onClick = { onAddToTeam(pokemon) },
-                enabled = !isAdded // Disable if already added
+                onClick = { onAddToTeam(pokemon) }, enabled = !isAdded
             ) {
                 Text(if (isAdded) "Added" else "Add to Team")
             }
@@ -80,4 +77,3 @@ fun PokemonItem(
     }
 }
 
-// Removed the duplicate capitalizeFirstLetter() function

@@ -1,4 +1,3 @@
-// app/src/main/java/com/amp/pokeapi/TeamView.kt
 package com.amp.pokeapi
 
 import androidx.compose.foundation.Image
@@ -27,46 +26,38 @@ import com.amp.pokeapi.viewmodels.TeamViewModel
 fun TeamView(navController: NavController, teamViewModel: TeamViewModel) {
     val team = teamViewModel.team
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Your Team") },
-                navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back"
-                        )
-                    }
-                }
-            )
-        },
-        content = { innerPadding ->
-            if (team.isEmpty()) {
-                // Show a message if the team is empty
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(text = "Your team is empty. Add some Pokémon!", fontSize = 18.sp)
-                }
-            } else {
-                // Display the team
-                LazyColumn(
-                    contentPadding = innerPadding,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
-                ) {
-                    items(team) { pkm ->
-                        TeamMemberItem(pkm, teamViewModel)
-                    }
+    Scaffold(topBar = {
+        TopAppBar(title = { Text("Your Team") }, navigationIcon = {
+            IconButton(onClick = { navController.popBackStack() }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack, contentDescription = "Back"
+                )
+            }
+        })
+    }, content = { innerPadding ->
+        if (team.isEmpty()) {
+            // Show a message if the team is empty
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Your team is empty. Add some Pokémon!", fontSize = 18.sp)
+            }
+        } else {
+            // Display the team
+            LazyColumn(
+                contentPadding = innerPadding, modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                items(team) { pkm ->
+                    TeamMemberItem(pkm, teamViewModel)
                 }
             }
         }
-    )
+    })
 }
 
 @Composable
@@ -78,8 +69,7 @@ fun TeamMemberItem(pokemon: Pokemon, teamViewModel: TeamViewModel) {
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(16.dp)
+            verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(16.dp)
         ) {
             // Pokémon Image
             val spriteUrl = pokemon.sprites?.front_default
@@ -107,12 +97,10 @@ fun TeamMemberItem(pokemon: Pokemon, teamViewModel: TeamViewModel) {
             // Remove Button
             IconButton(onClick = { teamViewModel.removeFromTeam(pokemon) }) {
                 Icon(
-                    imageVector = Icons.Filled.Close,
-                    contentDescription = "Remove from Team"
+                    imageVector = Icons.Filled.Close, contentDescription = "Remove from Team"
                 )
             }
         }
     }
 }
 
-// Removed the duplicate capitalizeFirstLetter() function

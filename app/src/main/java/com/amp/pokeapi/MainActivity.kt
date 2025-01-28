@@ -1,4 +1,3 @@
-// app/src/main/java/com/amp/pokeapi/MainActivity.kt
 package com.amp.pokeapi
 
 import android.os.Bundle
@@ -31,18 +30,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             PokeAPITheme(dynamicColor = false) {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     // Set up NavHost for navigation
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "pokemonList") {
                         composable("pokemonList") {
                             Column {
-                                TopBar(navController, teamViewModel) // Pass navController to TopBar
-                                // Rest of your content (Pokémon grid)
-                                // Assuming ScrollContent is already integrated within TopBar
-                                // If not, ensure to place ScrollContent here
+                                TopBar(navController, teamViewModel)
                             }
                         }
                         composable("teamView") {

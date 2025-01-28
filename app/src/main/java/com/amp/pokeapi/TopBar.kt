@@ -29,51 +29,39 @@ fun TopBar(navController: NavController, teamViewModel: TeamViewModel) {
     // This controls the scroll behavior for the top app bar
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            Column {
-                // MediumTopAppBar with custom colors
-                MediumTopAppBar(
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color(0xFFCC0000),
-                        titleContentColor = Color.White,
-                        navigationIconContentColor = Color.White,
-                        actionIconContentColor = Color.White
-                    ),
-                    title = {
-                        Text(
-                            text = "Red's PokeDex",
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    },
-                    navigationIcon = {
-                        // You can add a navigation icon here if needed
-                        // Currently left empty
-                    },
-                    actions = {
-                        // Button to navigate to Team View
-                        IconButton(onClick = { navController.navigate("teamView") }) {
-                            Icon(
-                                imageVector = Icons.Filled.List,
-                                contentDescription = "View Team"
-                            )
-                        }
-                    },
-                    scrollBehavior = scrollBehavior
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        Column {
+            // MediumTopAppBar with custom colors
+            MediumTopAppBar(colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Color(0xFFCC0000),
+                titleContentColor = Color.White,
+                navigationIconContentColor = Color.White,
+                actionIconContentColor = Color.White
+            ), title = {
+                Text(
+                    text = "Red's PokeDex", maxLines = 1, overflow = TextOverflow.Ellipsis
                 )
+            }, navigationIcon = {
+                // You can add a navigation icon here if needed
+                // Currently left empty
+            }, actions = {
+                // Button to navigate to Team View
+                IconButton(onClick = { navController.navigate("teamView") }) {
+                    Icon(
+                        imageVector = Icons.Filled.List, contentDescription = "View Team"
+                    )
+                }
+            }, scrollBehavior = scrollBehavior
+            )
 
-                // Search field below the top bar
-                TextField(
-                    value = searchQuery,
-                    onValueChange = { newQuery -> searchQuery = newQuery },
-                    placeholder = { Text("Search Pokémon") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
+            // Search field below the top bar
+            TextField(value = searchQuery,
+                onValueChange = { newQuery -> searchQuery = newQuery },
+                placeholder = { Text("Search Pokémon") },
+                modifier = Modifier.fillMaxWidth()
+            )
         }
-    ) { innerPadding ->
+    }) { innerPadding ->
         // Show the grid content, passing in both the padding from Scaffold and the search query
         ScrollContent(innerPadding, searchQuery, teamViewModel)
     }

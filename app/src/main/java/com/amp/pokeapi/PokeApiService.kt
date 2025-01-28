@@ -1,4 +1,3 @@
-// app/src/main/java/com/amp/pokeapi/PokeApiService.kt
 package com.amp.pokeapi
 
 import com.amp.pokeapi.models.Pokemon

@@ -1,4 +1,3 @@
-// app/src/main/java/com/amp/pokeapi/ScrollContent.kt
 package com.amp.pokeapi
 
 import androidx.compose.foundation.layout.Box
