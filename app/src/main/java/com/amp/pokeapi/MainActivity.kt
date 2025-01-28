@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    // Set up NavHost for navigation
+
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "pokemonList") {
                         composable("pokemonList") {
