@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.amp.pokeapi.extensions.capitalizeFirstLetter
 import com.amp.pokeapi.models.Pokemon
+import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
 fun PokemonItem(
@@ -47,25 +48,48 @@ fun PokemonItem(
             Text(
                 text = pokemon.name.capitalizeFirstLetter(),
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
             )
 
             // Height, weight, and base experience
-            Text(text = "Height: ${pokemon.height}")
-            Text(text = "Weight: ${pokemon.weight}")
-            Text(text = "Base Experience: ${pokemon.baseExperience}", fontSize = 14.sp)
+            Text(
+                text = "Height: ${pokemon.height}",
+                fontSize = 14.sp,
+                modifier = Modifier.padding(bottom = 2.dp)
+            )
+            Text(
+                text = "Weight: ${pokemon.weight}",
+                fontSize = 14.sp,
+                modifier = Modifier.padding(bottom = 2.dp)
+            )
+            Text(
+                text = "Base Experience: ${pokemon.baseExperience}",
+                fontSize = 14.sp,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
 
             // Abilities
-            val abilityList = pokemon.abilities.joinToString { it.ability.name }
             Text(
-                text = "Abilities:\n$abilityList", fontSize = 16.sp
+                text = "Abilities:",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 2.dp)
+            )
+            val abilityList = pokemon.abilities.joinToString(", ") { it.ability.name }
+            Text(
+                text = abilityList,
+                fontSize = 14.sp,
+                modifier = Modifier.padding(bottom = 4.dp)
             )
 
             // Types
             val typeList = pokemon.types.joinToString { it.type.name }
-            Text(text = "Types: $typeList")
-
-            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Types: $typeList",
+                fontSize = 14.sp,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
 
             // Add to Team Button
             Button(
@@ -76,4 +100,3 @@ fun PokemonItem(
         }
     }
 }
-
