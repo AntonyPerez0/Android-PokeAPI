@@ -52,12 +52,6 @@ Red's PokeDex is an Android application built using Kotlin and Jetpack Compose. 
 4. Add Pokémon to your team by tapping the "Add to Team" button.
 5. Navigate to the "Your Team" screen to manage your team.
 
-## Screenshots
-
-![Home Screen](screenshots/home_screen.png)
-![Pokemon Details](screenshots/pokemon_details.png)
-![Team View](screenshots/team_view.png)
-
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
