@@ -66,9 +66,3 @@ Contributions are welcome! Please follow these steps:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-Antony Perez - [GitHub](https://github.com/AntonyPerez0) - antony.perez@example.com
-
-Project Link: [https://github.com/AntonyPerez0/pokeapi](https://github.com/AntonyPerez0/pokeapi)
