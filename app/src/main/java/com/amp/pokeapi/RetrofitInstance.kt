@@ -1,4 +1,3 @@
-// app/src/main/java/com/amp/pokeapi/RetrofitInstance.kt
 package com.amp.pokeapi
 
 import retrofit2.Retrofit
