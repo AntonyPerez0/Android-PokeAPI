@@ -1,4 +1,3 @@
-// app/src/main/java/com/amp/pokeapi/models/Pokemon.kt
 package com.amp.pokeapi.models
 
 data class Pokemon(
@@ -13,27 +12,21 @@ data class Pokemon(
 )
 
 data class Ability(
-    val is_hidden: Boolean,
-    val slot: Int,
-    val ability: AbilityDetail
+    val is_hidden: Boolean, val slot: Int, val ability: AbilityDetail
 )
 
 data class AbilityDetail(
-    val name: String,
-    val url: String
+    val name: String, val url: String
 )
 
 data class Type(
-    val slot: Int,
-    val type: TypeDetail
+    val slot: Int, val type: TypeDetail
 )
 
 data class TypeDetail(
-    val name: String,
-    val url: String
+    val name: String, val url: String
 )
 
 data class Sprites(
-    val front_default: String?,
-    val back_default: String?
+    val front_default: String?, val back_default: String?
 )
